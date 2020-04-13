@@ -22,9 +22,6 @@ void Model::generate_message(){
 	for(int i = 0; i < message.size(); i++){
 		message[i] = rand() % 2;
 	}
-	if(calculate_vector_weight(message) == 0){
-		message[0] = 1;
-	}
 }
 
 Model::~Model(){}
@@ -52,9 +49,12 @@ Polynom Model::calculate_ax(){
 }
 
 void Model::form_aVector_from_polynom(Polynom& const polynom){
-	a.resize(polynom.get_deg() + 1);
+	a.resize(r + l);
 	for(int i = 0; i <= polynom.get_deg(); i++){
 		a[i] = polynom.get_coefs()[i];
+	}
+	for(int i = polynom.get_deg() + 1; i < a.size(); i++){
+		a[i] = 0;
 	}
 }
 

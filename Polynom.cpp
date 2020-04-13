@@ -8,10 +8,17 @@ Polynom::Polynom(){
 	coefs.push_back(0);
 }
 Polynom::Polynom(unsigned int deg, std::vector<int> coefs){
-	this->deg = deg;
-	this->coefs.resize(deg + 1);
-	this->coefs = coefs;
-	deg = get_max_deg();
+	if(deg > 0){
+		this->deg = deg;
+		this->coefs.resize(deg + 1);
+		this->coefs = coefs;
+		deg = get_max_deg();
+	}
+	else{
+		this->deg = 0;
+		this->coefs.resize(1);
+		this->coefs[0] = 0;
+	}
 }
 Polynom::Polynom(unsigned int deg){
 	this->deg = deg;
@@ -137,16 +144,21 @@ const Polynom Polynom::operator*(const Polynom& rhs) const{
 
 	// определяем с какой стороны полином больше
 	if(this->deg > rhs.deg){
-		for(int i = max_deg; i >= max_deg - rhs.deg - 1; i--){
+		for(int i = max_deg; i >= 0; i--){
 
+			if(i < rhs.deg){
+				res.coefs[i] = this->coefs[i] && rhs.coefs[rhs.deg];
+			}
 			// берем наш одночлен и уножаем его на каждое слагаемое многочлена по очереди
-			res.coefs[i] = this->coefs[i - rhs.deg] && rhs.coefs[rhs.deg];
+			else{
+				res.coefs[i] = this->coefs[i - rhs.deg] && rhs.coefs[rhs.deg];
+			}
 		}
-		for(int i = 0; i < max_deg - rhs.deg - 1; i++){
+		//for(int i = 0; i < max_deg - rhs.deg - 1; i++){
 
-			// Все коэфициенты при слагаемых, что не умножились должны быть равны 0
-			res.coefs[i] = 0;
-		}
+		//	// Все коэфициенты при слагаемых, что не умножились должны быть равны 0
+		//	res.coefs[i] = 0;
+		//}
 	}
 	else{
 		for(int i = max_deg; i >= max_deg - this->deg; i--){

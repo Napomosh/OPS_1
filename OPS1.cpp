@@ -25,32 +25,16 @@ int main(){
 
 	model.write_data_in_file("C:\\Users\\sashu\\Documents\\MATLAB\\file.txt", Pe);
 
-
-	/*float epsilon = 0.0001;
-
-	std::string str = "1101";
+	
+	/*std::string str = "1101";
 	Polynom gx = Polynom(str);
-
-	Model model = Model(4, gx, epsilon);
-	std::vector<float> Pe = model.modeling();
-	model.write_data_in_file("C:\\Users\\sashu\\Documents\\MATLAB\\file4.txt", Pe);
-	std::cout << "Modeling 4 finished" << std::endl << std::endl;
-
-	Model model1 = Model(6, gx, epsilon);
-	std::vector<float> Pe1 = model1.modeling();
-	model.write_data_in_file("C:\\Users\\sashu\\Documents\\MATLAB\\file6.txt", Pe);
-	std::cout << "Modeling 6 finished" << std::endl << std::endl;
-
-	Model model2 = Model(12, gx, epsilon);
-	std::vector<float> Pe2 = model2.modeling();
-	model.write_data_in_file("C:\\Users\\sashu\\Documents\\MATLAB\\file12.txt", Pe);
-	std::cout << "Modeling 12 finished" << std::endl << std::endl;
-
-	Model model3 = Model(16, gx, epsilon);
-	std::vector<float> Pe3 = model3.modeling();
-	model.write_data_in_file("C:\\Users\\sashu\\Documents\\MATLAB\\file16.txt", Pe);
-	std::cout << "Modeling 16 finished" << std::endl;*/
-
+	Model model = Model(4, gx, 0.001);
+	model.message_to_polynom();
+	Polynom a = model.calculate_ax();
+	model.form_aVector_from_polynom(a);*/
 
 	return 0;
 }
+
+
+// Доп c, исправить a(x)
