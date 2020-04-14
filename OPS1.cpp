@@ -21,17 +21,18 @@ int main(){
 	Polynom gx = Polynom(str);
 
 	Model model = Model(l, gx, epsilon);
-	std::vector<float> Pe = model.modeling();
+	std::vector<float> Pe = model.modeling_for_dop();
 
+	model.write_data_in_file("C:\\Users\\sashu\\Documents\\MATLAB\\file1.txt", Pe);
+
+	Pe = model.modeling();
 	model.write_data_in_file("C:\\Users\\sashu\\Documents\\MATLAB\\file.txt", Pe);
 
 	
 	/*std::string str = "1101";
 	Polynom gx = Polynom(str);
 	Model model = Model(4, gx, 0.001);
-	model.message_to_polynom();
-	Polynom a = model.calculate_ax();
-	model.form_aVector_from_polynom(a);*/
+	model.get_each_weights();*/
 
 	return 0;
 }

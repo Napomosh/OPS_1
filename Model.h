@@ -9,7 +9,7 @@ private:
 	int l; // длина кодируемой последовательности
 	int r; // степень порождающего полинома
 	float epsilon; // точность вычислений
-	std::vector<int> message; // вектор сообщения
+	std::vector<int> message = {0,0,0,0}; // вектор сообщения
 	std::vector<int> a; // вектор а
 	std::vector<int> e; // вектор ошибок
 	std::vector<int> b; // вектор b
@@ -30,6 +30,10 @@ public:
 	int calculate_vector_weight(const std::vector<int>& v); // вычисление веса вектора (количество единиц), нужно для проверки e = 0 or e != 0
 
 	std::vector<float> modeling(); // реализует само моделирование
+	std::vector<float> modeling_for_dop();
+	void generate_bVector_for_dop();
 	void write_data_in_file(std::string file_name, const std::vector<float>& v); // запись значений Ре в файл
+
+	void get_each_weights();
 };
 
